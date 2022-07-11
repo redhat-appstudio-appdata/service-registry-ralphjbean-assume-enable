@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: service-registry
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: service-registry
+    app.kubernetes.io/part-of: service-registry
+  name: service-registry
+  namespace: ralphjbean
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: service-registry
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: service-registry
+    spec:
+      containers:
+      - image: quay.io/redhat-appstudio/user-workload:ralphjbean-service-registry
+        imagePullPolicy: Always
+        name: container-image
+        resources: {}
+status: {}
